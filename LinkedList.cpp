@@ -49,3 +49,34 @@ void LinkedList::addEnd(int value)
     }
     this->count++;
 }
+
+int LinkedList::removeEnd()
+{
+    if(this-> count > 0)
+    {
+        
+        Node* n = this->tail;
+        int value = n->getPayload();
+
+        if(this->count == 1)
+        {
+            this->head = NULL;
+            this->tail = NULL;
+        }  
+        else
+        {
+            Node* currNode = this->head;
+            while(currNode->getNextNode() != tail)
+            {
+                currNode = currNode->getNextNode();
+            }
+            this->tail = currNode;
+            this->tail->setNextNode(NULL);
+        }
+
+
+        this->count--;
+        delete(n);
+        return value;
+    }
+}
